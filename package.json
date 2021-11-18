@@ -5,7 +5,7 @@
   "types": "./index.d.ts",
   "main": "index.js",
   "license": "MIT",
-  "repository": "https:github.com/NathanPB/progress.js",
+  "repository": "https://github.com/NathanPB/progress.js",
   "author": "Nathan P. Bombana <nathan.pbombana@gmail.com>(https://github.com/NathanPB)",
   "scripts": {
     "test": "jest",
