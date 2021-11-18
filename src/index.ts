@@ -1,13 +1,13 @@
 import ProgressBar, {Events} from "./ProgressBar";
 import {WriteStream} from "tty";
 import {Token} from "./token";
-import {StreamProgressBarRenderer} from "./ProgressBarRenderer";
-import RenderTrigger from "./RenderTrigger";
+import {StreamProgressBarRenderer} from "./render/ProgressBarRenderer";
+import RenderTrigger from "./render/RenderTrigger";
 
 export * as Tokens from './token';
 export * from './ProgressBar';
-export * from './ProgressBarRenderer';
-export { default as RenderTrigger } from './RenderTrigger';
+export * from './render/ProgressBarRenderer';
+export { default as RenderTrigger } from './render/RenderTrigger';
 export { default as ProgressBar } from './ProgressBar';
 
 export function initSimpleBar({ bar, template, tokens, stream }: {

@@ -1,4 +1,4 @@
-import RenderTrigger from "../src/RenderTrigger";
+import RenderTrigger from "../src/render/RenderTrigger";
 import ProgressBar, {Events} from "../src/ProgressBar";
 
 describe('RenderTrigger', () => {
