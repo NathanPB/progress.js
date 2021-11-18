@@ -14,6 +14,7 @@ export interface ProgressBarState {
   current: number
   total: number
   startTime: number
+  title: string
   rate(): number
   elapsedTime(since: number): number
   progress(): number
@@ -49,12 +50,14 @@ export default class ProgressBar extends EventEmitter implements ProgressBarStat
     this._completeEventEmitted = value
   }
 
+  public title: string
   public readonly startTime = Date.now();
 
-  constructor({ current, total }: { current?: number, total?: number } = {}) {
+  constructor({ current, total, title }: { current?: number, total?: number, title?: string } = {}) {
     super()
     this.current = current ?? this.current;
     this.total = total ?? this.total
+    this.title = title ?? ''
     this.checkCompleteEvent()
   }
 

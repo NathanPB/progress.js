@@ -46,6 +46,9 @@ export const current = (options: NumberFormat = {}):Token => bar =>
 export const total = (options: NumberFormat = {}):Token => bar =>
   formatNumber(bar.total, options)
 
+export const title = (): Token => bar =>
+  bar.title
+
 export const rate = (
   { interval = 1, ...other }: { interval?: number } & NumberFormat = {}
 ): Token => bar =>

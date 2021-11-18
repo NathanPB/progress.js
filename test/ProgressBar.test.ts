@@ -125,6 +125,18 @@ describe('ProgressBar', () => {
     })
   })
 
+  describe('#title', () => {
+    it('Should be empty', () => expect(new ProgressBar().title).toEqual(''))
+    it('Should be foobar', () => {
+      expect(new ProgressBar({ title: 'foobar' }).title).toEqual('foobar')
+    })
+    it('Should be changed after initialization foobar', () => {
+      const bar = new ProgressBar()
+      bar.title = 'foobar'
+      expect(bar.title).toEqual('foobar')
+    })
+  })
+
   describe('#tick', () => {
     it('Should be 20', () => {
       const bar = new ProgressBar()

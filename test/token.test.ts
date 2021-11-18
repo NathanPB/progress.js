@@ -110,4 +110,9 @@ describe('token.ts', () => {
         .toBe("5")
     })
   })
+
+  describe('#title', () => {
+    const bar = new ProgressBar({ title: 'FooBar' })
+    it('Should be FooBar', () => expect(bar.title).toEqual('FooBar'))
+  })
 })
