@@ -11,9 +11,9 @@
     "test": "jest",
     "clean": "rm -rf dist coverage docs benchmarks",
     "docs": "typedoc --entryPoints src/index.ts",
-    "prebuild": "npm run clean",
+    "prebuild": "yarn clean",
     "build": "tsc -p tsconfig.json && cp package.json dist && cp README.md dist && cp LICENSE dist",
-    "prerelease": "npm run build",
+    "prerelease": "yarn build",
     "release": "cd dist && npm publish --access public"
   },
   "devDependencies": {
