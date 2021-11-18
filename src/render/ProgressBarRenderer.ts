@@ -48,7 +48,7 @@ export abstract class ProgressBarRenderer {
   }
 }
 
-export class StreamProgressBarRenderer extends ProgressBarRenderer {
+export class TTYProgressBarRenderer extends ProgressBarRenderer {
   constructor(
     template: string,
     tokens: TokenDict,
@@ -65,7 +65,7 @@ export class StreamProgressBarRenderer extends ProgressBarRenderer {
   }
 }
 
-export class StreamMultiProgressBarRenderer extends ProgressBarRenderer {
+export class TTYMultiProgressBarRenderer extends ProgressBarRenderer {
   constructor(
     template: string,
     tokens: { [token: string]: Token },

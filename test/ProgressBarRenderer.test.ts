@@ -3,9 +3,9 @@ import {
   ProgressBarRenderer,
   ProgressBarState,
   RenderTrigger,
-  StreamMultiProgressBarRenderer,
-  StreamProgressBarRenderer,
-  Tokens
+  Tokens,
+  TTYMultiProgressBarRenderer,
+  TTYProgressBarRenderer
 } from "../src";
 import {TokenDict} from "../src/token";
 import {WriteStream} from 'tty';
@@ -115,7 +115,7 @@ describe('StreamProgressBarRenderer', () => {
   describe('#render', () => {
     it('Should do nothing if it\s not tty', () => {
       const stream: WriteStream = { ...process.stdout, write: jest.fn(), isTTY: false } as any
-      const renderer = new StreamProgressBarRenderer(template, tokens, stream)
+      const renderer = new TTYProgressBarRenderer(template, tokens, stream)
       renderer.render(bar1)
 
       expect(stream.write)
@@ -124,7 +124,7 @@ describe('StreamProgressBarRenderer', () => {
 
     it('Should write the bar the tty', () => {
       const stream: WriteStream = { cursorTo: jest.fn(), clearLine: jest.fn(), write: jest.fn(), isTTY: true } as any
-      const renderer = new StreamProgressBarRenderer(template, tokens, stream)
+      const renderer = new TTYProgressBarRenderer(template, tokens, stream)
 
       renderer.render(bar1)
       expect(stream.write).toHaveBeenCalledTimes(1)
@@ -135,7 +135,7 @@ describe('StreamProgressBarRenderer', () => {
 
 describe('StreamMultiProgressBarRenderer', () => {
   describe('#indexOfBar', () => {
-    const renderer = new StreamMultiProgressBarRenderer(template, tokens, process.stdout, [bar1, bar2])
+    const renderer = new TTYMultiProgressBarRenderer(template, tokens, process.stdout, [bar1, bar2])
     it('bar1 should be in the first index', () => {
       expect(renderer.indexOfBar(bar1)).toEqual(0)
     })
@@ -152,7 +152,7 @@ describe('StreamMultiProgressBarRenderer', () => {
   describe('#render', () => {
     it('Should do nothing if it\s not tty', () => {
       const stream: WriteStream = { ...process.stdout, write: jest.fn(), isTTY: false } as any
-      const renderer = new StreamMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
+      const renderer = new TTYMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
       renderer.render(bar1)
 
       expect(stream.write)
@@ -161,7 +161,7 @@ describe('StreamMultiProgressBarRenderer', () => {
 
     it('Should do nothing because the bar is not in the indexes', () => {
       const stream: WriteStream = { ...process.stdout, write: jest.fn(), isTTY: true } as any
-      const renderer = new StreamMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
+      const renderer = new TTYMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
       renderer.render(bar3)
 
       expect(stream.write)
@@ -170,7 +170,7 @@ describe('StreamMultiProgressBarRenderer', () => {
 
     it('Should write the first bar the tty', () => {
       const stream: WriteStream = { cursorTo: jest.fn(), clearLine: jest.fn(), write: jest.fn(), isTTY: true } as any
-      const renderer = new StreamMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
+      const renderer = new TTYMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
 
       renderer.render(bar1)
       expect(stream.write).toHaveBeenCalledTimes(1)
@@ -179,7 +179,7 @@ describe('StreamMultiProgressBarRenderer', () => {
 
     it('Should write the second bar the tty', () => {
       const stream: WriteStream = { cursorTo: jest.fn(), clearLine: jest.fn(), write: jest.fn(), isTTY: true } as any
-      const renderer = new StreamMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
+      const renderer = new TTYMultiProgressBarRenderer(template, tokens, stream, [bar1, bar2])
 
       renderer.render(bar2)
       expect(stream.write).toHaveBeenCalledTimes(1)

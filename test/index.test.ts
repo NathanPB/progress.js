@@ -8,7 +8,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {Events, initMultiBar, initSimpleBar, ProgressBar, StreamProgressBarRenderer, Tokens} from "../src";
+import {Events, initMultiBar, initSimpleBar, ProgressBar, Tokens, TTYProgressBarRenderer} from "../src";
 
 describe('index', () => {
   describe('#initSimpleBar', () => {
@@ -44,7 +44,7 @@ describe('index', () => {
 
     it(
       'Should be linked to stdout',
-      () => expect((render as StreamProgressBarRenderer).stream).toEqual(process.stdout)
+      () => expect((render as TTYProgressBarRenderer).stream).toEqual(process.stdout)
     )
   })
 
@@ -87,7 +87,7 @@ describe('index', () => {
 
     it(
       'Should be linked to stdout',
-      () => expect((render as StreamProgressBarRenderer).stream).toEqual(process.stdout)
+      () => expect((render as TTYProgressBarRenderer).stream).toEqual(process.stdout)
     )
   });
 })

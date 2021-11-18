@@ -1,10 +1,10 @@
-import {Events, ProgressBar, RenderTrigger, StreamMultiProgressBarRenderer, Tokens} from '../src';
+import {Events, ProgressBar, RenderTrigger, Tokens, TTYMultiProgressBarRenderer} from '../src';
 
 const bar1 = new ProgressBar({ total: 100, title: 'Bar 1' })
 const bar2 = new ProgressBar({ current: 50, total: 300, title: 'Bar Foo' })
 const bar3 = new ProgressBar({ total: 200, title: 'Just bar' })
 
-new StreamMultiProgressBarRenderer(
+new TTYMultiProgressBarRenderer(
   '$title$ [$bar$] $progress$% | eta $eta$ s | elapsed $elapsed$ s', {
     bar: Tokens.bar({ length: 30 }),
     eta: Tokens.eta({ interval: 1000 }),

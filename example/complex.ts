@@ -1,8 +1,8 @@
-import {Events, ProgressBar, RenderTrigger, StreamProgressBarRenderer, Tokens} from '../src'
+import {Events, ProgressBar, RenderTrigger, Tokens, TTYProgressBarRenderer} from '../src'
 
 const bar = new ProgressBar({ total: 100 })
 
-new StreamProgressBarRenderer(
+new TTYProgressBarRenderer(
   '[$bar$] $progress$% | eta $eta$ s | elapsed $elapsed$ s', {
     bar: Tokens.bar({ length: 30 }),
     eta: Tokens.eta({ interval: 1000 }),
