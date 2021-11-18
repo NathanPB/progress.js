@@ -12,6 +12,7 @@ import {ProgressBarState} from "./ProgressBar";
 import {formatNumber, NumberFormat} from "./utils";
 
 export type Token = (bar: ProgressBarState)=>string
+export type TokenDict = { [_: string]: Token }
 
 export const bar = (
   { length, fill = '=', head = fill, empty = ' '}:

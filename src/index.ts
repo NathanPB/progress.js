@@ -1,6 +1,6 @@
 import ProgressBar, {Events} from "./ProgressBar";
 import {WriteStream} from "tty";
-import {Token} from "./token";
+import {TokenDict} from "./token";
 import {StreamMultiProgressBarRenderer, StreamProgressBarRenderer} from "./render/ProgressBarRenderer";
 import RenderTrigger from "./render/RenderTrigger";
 
@@ -13,7 +13,7 @@ export { default as ProgressBar } from './ProgressBar';
 export function initSimpleBar({ bar, template, tokens, stream }: {
   bar: ProgressBar
   template: string,
-  tokens: { [_: string]: Token },
+  tokens: TokenDict,
   stream: WriteStream,
 }) {
   return new StreamProgressBarRenderer(template, tokens, stream)
@@ -23,7 +23,7 @@ export function initSimpleBar({ bar, template, tokens, stream }: {
 export function initMultiBar({ bars, template, tokens, stream }: {
   bars: ProgressBar[],
   template: string,
-  tokens: { [_: string]: Token },
+  tokens: TokenDict,
   stream: WriteStream
 }) {
   const renderer = new StreamMultiProgressBarRenderer(template, tokens, stream, bars)

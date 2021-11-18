@@ -9,7 +9,7 @@
  */
 
 import {ProgressBarState} from "../ProgressBar";
-import {Token} from "../token"
+import {Token, TokenDict} from "../token"
 import {WriteStream} from "tty";
 import RenderTrigger from "./RenderTrigger";
 
@@ -19,7 +19,7 @@ export abstract class ProgressBarRenderer {
 
   protected constructor(
     public readonly template: string,
-    public readonly tokens: { [token: string]: Token }
+    public readonly tokens: TokenDict
   ) {}
 
   public abstract render(bar: ProgressBarState): void
@@ -51,7 +51,7 @@ export abstract class ProgressBarRenderer {
 export class StreamProgressBarRenderer extends ProgressBarRenderer {
   constructor(
     template: string,
-    tokens: { [token: string]: Token },
+    tokens: TokenDict,
     public readonly stream: WriteStream,
     public readonly extra: { disableNonTTY?: boolean } = {}
   ) {
