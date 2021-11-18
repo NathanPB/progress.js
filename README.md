@@ -30,6 +30,23 @@ initSimpleBar({
 ```
 ![](https://i.imgur.com/m8u1gFX.gif)
 
+You can also group multiple progress bars:
+
+```ts
+initMultiBar({
+  bars: [bar1, bar2, bar3],
+  template: '$title$ [$bar$] $progress$% | eta $eta$ s | elapsed $elapsed$ s',
+  tokens: {
+    bar: Tokens.bar({ length: 30 }),
+    eta: Tokens.eta({ interval: 1000 }),
+    elapsed: Tokens.elapsedTime({ interval: 1000 }),
+    progress: Tokens.progress({ decimalDigits: 2 }),
+    title: Tokens.title()
+  },
+  stream: process.stdout
+})
+```
+
 The above code is a shortcut to the full version. If you want to take control over the customization, check [this example](/blob/main/examples/complex.ts).
 
 
