@@ -20,8 +20,8 @@ describe('ProgressBar', () => {
         expect(callback).toBeCalledTimes(10)
       })
 
-      it('Callback should receive the arguments', () => {
-        const bar = new ProgressBar({ total: 10 })
+      it('Callback should receive the arguments of 5 ticks', () => {
+        const bar = new ProgressBar({ total: 100 })
         const callback = jest.fn()
         bar.addListener(Events.TICK, callback)
 
@@ -31,6 +31,16 @@ describe('ProgressBar', () => {
         expect(callback).toHaveBeenNthCalledWith(3, 3)
         expect(callback).toHaveBeenNthCalledWith(4, 4)
         expect(callback).toHaveBeenNthCalledWith(5, 5)
+      })
+
+      it('Callback should receive the remaining size as argument', () => {
+        const bar = new ProgressBar({ current: 40, total: 100 })
+        const callback = jest.fn()
+        bar.addListener(Events.TICK, callback)
+        bar.tick(110)
+
+        expect(callback).toBeCalledTimes(1)
+        expect(callback).toHaveBeenCalledWith(60)
       })
     })
 
@@ -139,9 +149,16 @@ describe('ProgressBar', () => {
 
   describe('#tick', () => {
     it('Should be 20', () => {
-      const bar = new ProgressBar()
+      const bar = new ProgressBar({ total: 40 })
       for (let i=0; i<10; i++) bar.tick(2)
       expect(bar.current).toEqual(20)
+    })
+
+    it('Should not increase the value after the bar is complete', () => {
+      const bar = new ProgressBar({ total: 40 })
+      bar.tick(30)
+      bar.tick(40)
+      expect(bar.current).toEqual(40)
     })
   })
 

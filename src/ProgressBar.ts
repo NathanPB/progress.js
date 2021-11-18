@@ -73,12 +73,12 @@ export default class ProgressBar extends EventEmitter implements ProgressBarStat
   }
 
   public tick(value: number) {
-    if (value) {
-      this.current += value
-      this.emit(Events.TICK, value)
-    }
+    const incValue = (this.current + value) > this.total
+      ? Math.min(this.total - this.current, value)
+      : value
 
-    this.checkCompleteEvent()
+    this.current += incValue
+    this.emit(Events.TICK, incValue)
   }
 
   public rate(): number {
