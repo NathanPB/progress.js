@@ -14,7 +14,7 @@ If you want to try the unstable features, use the ``next`` tag: ``npm i @nathanp
 ## Basic example
 
 ```ts
-import { initSimpleBar } from '@nathanpb/progress'
+import { initSimpleBar, ProgressBar, Tokens } from '@nathanpb/progress'
 
 initSimpleBar({ 
   bar: new ProgressBar({ total: 100 }),
