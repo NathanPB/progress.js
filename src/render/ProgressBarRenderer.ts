@@ -53,13 +53,13 @@ export class StreamProgressBarRenderer extends ProgressBarRenderer {
     template: string,
     tokens: TokenDict,
     public readonly stream: WriteStream,
-    public readonly extra: { disableNonTTY?: boolean } = {}
+    public readonly extra: { enableNonTTY?: boolean } = {}
   ) {
     super(template, tokens);
   }
 
   public render(bar: ProgressBarState) {
-    if (this.extra.disableNonTTY && !this.stream.isTTY) return
+    if (!this.extra.enableNonTTY && !this.stream.isTTY) return
     this.stream.cursorTo(0)
     this.stream.write(this.makeString(bar))
     this.stream.clearLine(1)
@@ -72,13 +72,13 @@ export class StreamMultiProgressBarRenderer extends ProgressBarRenderer {
     tokens: { [token: string]: Token },
     public readonly stream: WriteStream,
     private readonly bars: ProgressBarState[],
-    public readonly extra: { disableNonTTY?: boolean } = {}
+    public readonly extra: { enableNonTTY?: boolean } = {}
   ) {
     super(template, tokens);
   }
 
   public render(bar: ProgressBarState) {
-    if (this.extra.disableNonTTY && !this.stream.isTTY) return
+    if (!this.extra.enableNonTTY && !this.stream.isTTY) return
     const index = this.bars.indexOf(bar)
     if (index === -1) return
 
