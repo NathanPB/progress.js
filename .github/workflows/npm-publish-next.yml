@@ -1,0 +1,25 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: Node.js Package Next
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-npm-next:
+    if: github.repository == 'NathanPB/progress.js'
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: yarn
+      - run: yarn version --new-version "0.0.0-$(git rev-parse HEAD)" --no-git-tag-version
+      - run: yarn release -- --tag next
