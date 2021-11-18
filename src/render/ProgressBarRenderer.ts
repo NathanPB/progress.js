@@ -75,9 +75,13 @@ export class StreamMultiProgressBarRenderer extends ProgressBarRenderer {
     super(template, tokens);
   }
 
+  public indexOfBar(bar: ProgressBarState): number {
+    return this.bars.indexOf(bar)
+  }
+
   public render(bar: ProgressBarState) {
     if (!this.stream.isTTY) return
-    const index = this.bars.indexOf(bar)
+    const index = this.indexOfBar(bar)
     if (index === -1) return
 
     this.stream.cursorTo(0, index)
