@@ -16,8 +16,9 @@ If you want to try the unstable features, use the ``next`` tag: ``npm i @nathanp
 ```ts
 import { initSimpleBar, ProgressBar, Tokens } from '@nathanpb/progress'
 
+const bar = new ProgressBar({ total: 100 })
 initSimpleBar({ 
-  bar: new ProgressBar({ total: 100 }),
+  bar,
   template: '[$bar$] $progress$% | eta $eta$ s | elapsed $elapsed$ s',
   stream: process.stdout,
   tokens: {
@@ -27,6 +28,10 @@ initSimpleBar({
     progress: Tokens.progress({ decimalDigits: 2 })
   }
 })
+
+bar.on(Events.COMPLETED, () => console.log('Bar completed'))
+
+setInterval(() => bar.tick(1), 500)
 ```
 ![](https://i.imgur.com/m8u1gFX.gif)
 
