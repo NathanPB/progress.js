@@ -273,4 +273,11 @@ describe('ProgressBar', () => {
       })
     })
   })
+
+  describe('#eventNames', () => {
+    it('Should be the available events in the enum', () => {
+      expect(new ProgressBar().eventNames())
+        .toEqual(Object.values(Events))
+    })
+  });
 })

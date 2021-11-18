@@ -23,7 +23,7 @@ export interface ProgressBarState {
 }
 
 export enum Events {
-  TICK = 'progress',
+  TICK = 'tick',
   COMPLETED = 'completed',
   REACTIVATED = 'reactivated'
 }
@@ -52,6 +52,10 @@ export default class ProgressBar extends EventEmitter implements ProgressBarStat
 
   public title: string
   public readonly startTime = Date.now();
+
+  eventNames(): Array<string> {
+    return Object.values(Events);
+  }
 
   constructor({ current, total, title }: { current?: number, total?: number, title?: string } = {}) {
     super()
