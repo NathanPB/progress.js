@@ -30,39 +30,10 @@ initSimpleBar({
 ```
 ![](https://i.imgur.com/m8u1gFX.gif)
 
-The above code is a shortcut to the full version. If you want to take control over the customization, check the snipped bellow:
+The above code is a shortcut to the full version. If you want to take control over the customization, check [this example](/blob/main/examples/complex.ts).
 
-<details>
-  <summary>Complete version</summary>
 
-The process is to:
-1. Create the bar
-2. Create the renderer
-3. Create a render trigger listening to the ``'tick'`` event
-4. Attach the render trigger to the render
-5. Listen to the ``'completed'`` event and print something
-
-```ts
-import {ProgressBar, StreamProgressBarRenderer, RenderTrigger, Events, Tokens} from '@nathanpb/progress'
-
-const bar = new ProgressBar({ total: 100 })
-
-new StreamProgressBarRenderer(
-  '[$bar$] $progress$% | eta $eta$ s | elapsed $elapsed$ s', {
-    bar: Tokens.bar({ length: 30 }),
-    eta: Tokens.eta({ interval: 1000 }),
-    elapsed: Tokens.elapsedTime({ interval: 1000 }),
-    progress: Tokens.progress({ decimalDigits: 2 })
-  },
-  process.stdout,
-).attach(self => new RenderTrigger(self, bar, Events.TICK))
-
-bar.on(Events.COMPLETED, () => console.log('Bar completed'))
-
-setInterval(() => bar.tick(1), 500)
-```
-
-</details>
+Also, check the [examples repository](/tree/main/example).
 
 ## Downsides
 
