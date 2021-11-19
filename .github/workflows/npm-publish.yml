@@ -29,5 +29,5 @@ jobs:
         with:
           add: "package.json"
           default_author: github_actor
-          message: ${{ format("[CI] Bump version to {0}", github.ref_name) }}
+          message: ${{ format('[CI] Bump version to {0}', github.ref_name) }}
           pull: "NO_PULL"
