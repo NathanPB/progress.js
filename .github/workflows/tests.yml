@@ -21,4 +21,9 @@ jobs:
     - run: yarn
     - run: yarn add -D esbuild
     - run: yarn test
-    - run: yarn build
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        flag-name: Node.js ${{ matrix.node }}
