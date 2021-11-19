@@ -9,10 +9,10 @@
  */
 
 import {ProgressBarState} from "../ProgressBar";
-import {TokenDict} from "../token"
+import {Token, TokenDict} from "../token"
 import RenderTrigger from "./RenderTrigger";
 
-export default abstract class ProgressBarRenderer {
+export abstract class ProgressBarRenderer {
   private readonly _triggers: RenderTrigger[] = []
   public get triggers() { return Object.freeze(Array.of(...this._triggers)) }
 
@@ -44,5 +44,19 @@ export default abstract class ProgressBarRenderer {
     const index = this.triggers.indexOf(rendererTrigger)
     if (index === -1) throw new Error('RenderTrigger not found')
     this._triggers.splice(index, 1).forEach(it => it.finalize())
+  }
+}
+
+export abstract class MultiProgressBarRenderer extends ProgressBarRenderer {
+  protected constructor(
+    template: string,
+    tokens: { [token: string]: Token },
+    protected readonly bars: ProgressBarState[],
+  ) {
+    super(template, tokens)
+  }
+
+  indexOfBar(bar: ProgressBarState): number {
+    return this.bars.indexOf(bar)
   }
 }

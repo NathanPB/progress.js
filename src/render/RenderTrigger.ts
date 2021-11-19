@@ -9,7 +9,7 @@
  */
 
 import {Events, ProgressBar} from "../ProgressBar";
-import ProgressBarRenderer from "./ProgressBarRenderer";
+import {ProgressBarRenderer} from "./ProgressBarRenderer";
 
 export default class RenderTrigger {
 

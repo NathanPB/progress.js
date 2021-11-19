@@ -24,7 +24,7 @@ export function initMultiBar({ bars, template, tokens, stream }: {
   tokens: TokenDict,
   stream: WriteStream
 }) {
-  const renderer = new TTYMultiProgressBarRenderer(template, tokens, stream, bars)
+  const renderer = new TTYMultiProgressBarRenderer(template, tokens, bars, stream)
   bars.forEach(bar => renderer.attach(self => new RenderTrigger(self, bar, Events.TICK)))
   return renderer
 }

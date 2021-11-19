@@ -12,8 +12,8 @@ new TTYMultiProgressBarRenderer(
     progress: Tokens.progress({ decimalDigits: 2 }),
     title: Tokens.title()
   },
+  [bar1, bar2, bar3],
   process.stdout,
-  [bar1, bar2, bar3]
 )
   .attach(self => new RenderTrigger(self, bar1, Events.TICK))
   .attach(self => new RenderTrigger(self, bar2, Events.TICK))
