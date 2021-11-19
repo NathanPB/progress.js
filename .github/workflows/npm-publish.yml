@@ -21,13 +21,11 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: yarn
-      - run: yarn version --new-version "$NEXT_VERSION" --no-git-tag
+      - run: yarn version --new-version "$NEXT_VERSION" --no-git-tag-version
       - run: yarn release
 
       - name: Commit version bump
         uses: EndBug/add-and-commit@v7
         with:
           add: "package.json"
-          default_author: github_actor
           message: ${{ format('[CI] Bump version to {0}', github.ref_name) }}
-          pull: "NO_PULL"
