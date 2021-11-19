@@ -1,4 +1,4 @@
-import ProgressBar, {Events} from "../src/ProgressBar";
+import {Events, ProgressBar} from "../src";
 
 describe('ProgressBar', () => {
   describe('Event Emitter', () => {

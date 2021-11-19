@@ -1,5 +1,4 @@
-import RenderTrigger from "../src/render/RenderTrigger";
-import ProgressBar, {Events} from "../src/ProgressBar";
+import {Events, ProgressBar, RenderTrigger} from "../src";
 
 describe('RenderTrigger', () => {
   it('Should not trigger the render function because the trigger is not active', () => {

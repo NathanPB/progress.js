@@ -28,7 +28,7 @@ export enum Events {
   REACTIVATED = 'reactivated'
 }
 
-export default class ProgressBar extends EventEmitter implements ProgressBarState {
+export class ProgressBar extends EventEmitter implements ProgressBarState {
   private _current: number = 0
   public get current() { return this._current }
   public set current(value: number) {

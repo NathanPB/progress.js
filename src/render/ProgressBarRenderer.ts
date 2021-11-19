@@ -9,11 +9,10 @@
  */
 
 import {ProgressBarState} from "../ProgressBar";
-import {Token, TokenDict} from "../token"
-import {WriteStream} from "tty";
+import {TokenDict} from "../token"
 import RenderTrigger from "./RenderTrigger";
 
-export abstract class ProgressBarRenderer {
+export default abstract class ProgressBarRenderer {
   private readonly _triggers: RenderTrigger[] = []
   public get triggers() { return Object.freeze(Array.of(...this._triggers)) }
 
@@ -45,47 +44,5 @@ export abstract class ProgressBarRenderer {
     const index = this.triggers.indexOf(rendererTrigger)
     if (index === -1) throw new Error('RenderTrigger not found')
     this._triggers.splice(index, 1).forEach(it => it.finalize())
-  }
-}
-
-export class TTYProgressBarRenderer extends ProgressBarRenderer {
-  constructor(
-    template: string,
-    tokens: TokenDict,
-    public readonly stream: WriteStream,
-  ) {
-    super(template, tokens);
-  }
-
-  public render(bar: ProgressBarState) {
-    if (!this.stream.isTTY) return
-    this.stream.cursorTo(0)
-    this.stream.write(this.makeString(bar))
-    this.stream.clearLine(1)
-  }
-}
-
-export class TTYMultiProgressBarRenderer extends ProgressBarRenderer {
-  constructor(
-    template: string,
-    tokens: { [token: string]: Token },
-    public readonly stream: WriteStream,
-    private readonly bars: ProgressBarState[],
-  ) {
-    super(template, tokens);
-  }
-
-  public indexOfBar(bar: ProgressBarState): number {
-    return this.bars.indexOf(bar)
-  }
-
-  public render(bar: ProgressBarState) {
-    if (!this.stream.isTTY) return
-    const index = this.indexOfBar(bar)
-    if (index === -1) return
-
-    this.stream.cursorTo(0, index)
-    this.stream.write(this.makeString(bar))
-    this.stream.clearLine(1)
   }
 }

@@ -3,11 +3,11 @@ import {
   ProgressBarRenderer,
   ProgressBarState,
   RenderTrigger,
+  TokenDict,
   Tokens,
   TTYMultiProgressBarRenderer,
   TTYProgressBarRenderer
 } from "../src";
-import {TokenDict} from "../src/token";
 import {WriteStream} from 'tty';
 import Mock = jest.Mock;
 

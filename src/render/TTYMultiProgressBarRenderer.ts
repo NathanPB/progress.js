@@ -8,25 +8,32 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import {Events, ProgressBar} from "../ProgressBar";
+import {WriteStream} from "tty";
+import {Token} from "../token";
+import {ProgressBarState} from "../ProgressBar";
 import ProgressBarRenderer from "./ProgressBarRenderer";
 
-export default class RenderTrigger {
-
+export default class TTYMultiProgressBarRenderer extends ProgressBarRenderer {
   constructor(
-    public readonly render: ProgressBarRenderer,
-    public readonly bar: ProgressBar,
-    public readonly event: Events = Events.TICK
-  ) {}
-
-  private renderCallback = () => this.render.render(this.bar)
-
-  init(): void {
-    this.bar.addListener(this.event, this.renderCallback)
+    template: string,
+    tokens: { [token: string]: Token },
+    public readonly stream: WriteStream,
+    private readonly bars: ProgressBarState[],
+  ) {
+    super(template, tokens);
   }
 
-  finalize(): void {
-    this.bar.removeListener(this.event, this.renderCallback)
+  public indexOfBar(bar: ProgressBarState): number {
+    return this.bars.indexOf(bar)
   }
 
+  public render(bar: ProgressBarState) {
+    if (!this.stream.isTTY) return
+    const index = this.indexOfBar(bar)
+    if (index === -1) return
+
+    this.stream.cursorTo(0, index)
+    this.stream.write(this.makeString(bar))
+    this.stream.clearLine(1)
+  }
 }
