@@ -56,10 +56,10 @@ initMultiBar({
 })
 ```
 
-The above code is a shortcut to the full version. If you want to take control over the customization, check [this example](/blob/main/examples/complex.ts).
+The above code is a shortcut to the full version. If you want to take control over the customization, check [this example](/example/complex.ts).
 
 
-Also, check the [examples repository](/tree/main/example).
+Also, check the [examples repository](/example).
 
 ## Downsides
 
