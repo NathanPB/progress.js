@@ -27,5 +27,6 @@ jobs:
       - name: Commit version bump
         uses: EndBug/add-and-commit@v7
         with:
-          add: "package.json"
+          add: ./package.json
           message: ${{ format('[CI] Bump version to {0}', github.ref_name) }}
+          branch: main
