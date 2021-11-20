@@ -1,4 +1,4 @@
-import {Events, ProgressBar, RenderTrigger, Tokens, TTYMultiProgressBarRenderer} from '../src';
+import {Events, ProgressBar, RenderTrigger, Tokens, TTYMultiProgressBarRenderer} from '@nathanpb/progress';
 
 const bar1 = new ProgressBar({ total: 100, title: 'Bar 1' })
 const bar2 = new ProgressBar({ current: 50, total: 300, title: 'Bar Foo' })

@@ -8,8 +8,11 @@
       <sourceFolder url="file://$MODULE_DIR$/example" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/docs/api" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="docsify" level="application" />
+    <orderEntry type="library" name="search" level="application" />
   </component>
 </module>

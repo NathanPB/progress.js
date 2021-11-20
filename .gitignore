@@ -2,9 +2,10 @@
 /build/
 /lib/
 /dist/
-/docs/
 .idea/*
 
+/docs/api
+/docs/README.md
 .DS_Store
 benchmarks
 coverage
