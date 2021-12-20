@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
-    "@types/node": "^14",
+    "@types/node": "^17",
     "docsify-cli": "^4.4.3",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
