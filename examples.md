@@ -12,6 +12,9 @@
 [example/download-lib.ts](/example/download-lib.ts ':include')
 
 
+# Using the Mutable token
+[example/mutable-token.ts](/example/mutable-token.ts ':include')
+
 # Writing a custom token
 [example/qcustom-token.ts](/example/custom-token.ts ':include')
 
