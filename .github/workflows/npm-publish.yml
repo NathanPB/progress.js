@@ -22,7 +22,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn version --new-version "$NEXT_VERSION" --no-git-tag-version
-      - run: yarn release
 
       - name: Commit version bump
         uses: EndBug/add-and-commit@v7
@@ -30,3 +29,5 @@ jobs:
           add: ./package.json
           message: ${{ format('[CI] Bump version to {0}', github.ref_name) }}
           branch: main
+
+      - run: yarn release
