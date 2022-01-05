@@ -19,6 +19,7 @@ Tokens.progress()
 - [Tokens.title](/api/modules/Tokens.html#title)
 - [Tokens.rate](/api/modules/Tokens.html#rate)
 - [Tokens.eta](/api/modules/Tokens.html#eta)
+- [Tokens.mutable](/api/modules/Tokens.html#mutable)
 
 ## Writing a custom token
 

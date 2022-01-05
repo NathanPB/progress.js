@@ -59,3 +59,28 @@ export const eta = (
   { interval = 1, ...other }: { interval?: number } & NumberFormat = {}
 ): Token => bar =>
   formatNumber(bar.eta() / interval, other)
+
+/**
+ * The Mutable token stores an internal string, which can be mutated using the `getValue` and `setValue` methods
+ *
+ * Example:
+ * ```
+ * const token = Tokens.mutable('Foo')
+ * const bar = new ProgressBar()
+ *
+ * console.log(token.getValue()) // Foo
+ * console.log(token(bar)) // Foo
+ *
+ * token.setValue('Bar')
+ * console.log(token.getValue()) // Bar
+ * console.log(token(bar)) // Bar
+ * ```
+ *
+ * @param initialValue The starting value for the token
+ */
+export const mutable = (initialValue: string): (Token & { getValue: ()=>string, setValue: (value: string)=>void }) => {
+  const func = () => initialValue
+  func.setValue = (value: string) => { initialValue = value }
+  func.getValue = () => initialValue
+  return func
+}

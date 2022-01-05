@@ -114,4 +114,29 @@ describe('Tokens.ts', () => {
     const bar = new ProgressBar({ title: 'FooBar' })
     it('Should be FooBar', () => expect(bar.title).toEqual('FooBar'))
   })
+
+  describe('#mutable', () => {
+    it('Should render the initial value of Foo', () => {
+      const token = Tokens.mutable('Foo')
+      const bar = new ProgressBar()
+      expect(token(bar)).toEqual('Foo')
+    })
+
+    describe('#setValue plus #getValue', () => {
+      it('Should return the initial value of Foo, then mutate the value to Bar and retrieve it', () => {
+        const token = Tokens.mutable('Foo')
+        expect(token.getValue()).toEqual('Foo')
+        token.setValue('Bar')
+        expect(token.getValue()).toEqual('Bar')
+      })
+    })
+
+    describe('#setValue plus invoker', () => {
+      it('Should mutate the Token\'s value from Foo to Bar', () => {
+        const token = Tokens.mutable('Foo')
+        token.setValue('Bar')
+        expect(token(new ProgressBar())).toEqual('Bar')
+      })
+    })
+  });
 })
