@@ -1,4 +1,5 @@
 [![npm version](https://img.shields.io/npm/v/@nathanpb/progress.svg)](https://www.npmjs.com/package/@nathanpb/progress)
+[![Tests Status](https://github.com/NathanPB/progress.js/workflows/Test/badge.svg)](https://github.com/NathanPB/progress.js/actions/workflows/tests.yml)
 [![Coverage Status](https://img.shields.io/coveralls/NathanPB/progress.js.svg)](https://coveralls.io/github/NathanPB/progress.js?branch=main)
 
 
