@@ -1,6 +1,6 @@
 {
   "name": "@nathanpb/progress",
-  "version": "3.0.0-1",
+  "version": "3.1.0",
   "description": "Library for creating highly customizable CLI-like progress bars in javascript",
   "types": "./index.d.ts",
   "main": "index.js",
